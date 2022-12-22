@@ -7,8 +7,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from user.serializers import UserSerializer
+from user.serializers import UserSerializer, CustomTokenObtainPairTokenSerializer
+
 
 class CreateUserView(APIView):
     """Create a new user and return new user's email and jwt_token"""
@@ -21,14 +23,17 @@ class CreateUserView(APIView):
         if serializer.is_valid():
             user = serializer.save()
 
-            data.update(serializer.data)
             refresh = RefreshToken.for_user(user)
-            data["jwt"] = {
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
-            }
+            data["access"] = str(refresh.access_token)
+            data["refresh"] = str(refresh)
+            data.update(serializer.data)
 
         else:
             data = serializer.errors
 
         return Response(data, status=status.HTTP_201_CREATED)
+
+
+class ObtainPairTokenView(TokenObtainPairView):
+
+    serializer_class = CustomTokenObtainPairTokenSerializer

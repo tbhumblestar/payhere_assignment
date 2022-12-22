@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_spectacular',
+    'core',
     'user',
+    'record',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +89,11 @@ DATABASES = {
             "NAME": "Payhere",
             "USER": "root",
             "PASSWORD": "p9l9o9k9",
-            "HOST": "127.0.0.1",
+            
+            # "HOST": "127.0.0.1",
+            
+            #teset
+            "HOST": "mysql57.c5l6i4hlmljq.ap-northeast-2.rds.amazonaws.com",
             "PORT": "3306",
         }
 }
@@ -141,8 +147,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    #for test
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id'
