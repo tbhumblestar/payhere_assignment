@@ -91,7 +91,7 @@ def make_random_string(self):
 
     while True:
         url_string = "".join(choices(ascii_letters, k=7))
-        if not ShortURL.objects.filter(short_url=url_string).exists():
+        if not ShortURL.objects.filter(url_string=url_string).exists():
             break
 
     return url_string

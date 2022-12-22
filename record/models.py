@@ -16,7 +16,7 @@ class Record(models.Model):
 class ShortURL(models.Model):
     original_url = models.CharField(max_length=255)
     short_url = models.CharField(max_length=255)
-    url_string = models.CharField(max_length=255)
+    url_string = models.CharField(max_length=255,db_index=True)
     valid_time = models.DateTimeField()
 
     class Meta:
