@@ -28,10 +28,13 @@ class CreateUserView(APIView):
             data["refresh"] = str(refresh)
             data.update(serializer.data)
 
+            return Response(data, status=status.HTTP_201_CREATED)
+        
         else:
             data = serializer.errors
+            
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(data, status=status.HTTP_201_CREATED)
 
 
 class ObtainPairTokenView(TokenObtainPairView):
