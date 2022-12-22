@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from record.views import Redirector
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('record/', include('record.urls')),
+    path('<str:short_url>/', Redirector.as_view()),
 ]
