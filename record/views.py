@@ -158,6 +158,7 @@ class Redirector(APIView):
         shorturl = get_object_or_404(ShortURL, url_string=url_string)
 
         if datetime.now() > shorturl.valid_time:
+            #데이터를 삭제해주는 것도 좋을 듯
             raise ShortURLNotValidError
 
         return redirect(shorturl.original_url)

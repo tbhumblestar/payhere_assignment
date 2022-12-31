@@ -55,6 +55,7 @@
 + 프론트측에서 access_token과 refresh_token을 제거합니다.
 
 <br/>
+
 access_token 만료
 + 만약 access_token이 만료될 경우,클라이언트는 refresh_token을 제공하여 access_token을 재발급받을 수 있는 api를 호출합니다
 + 서버는 refresh_token이 유효하면 새 access_token을 새로 발급하여 응답합니다.

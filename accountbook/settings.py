@@ -43,11 +43,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #library
     'corsheaders',
     'rest_framework',
+    'drf_spectacular',
+    
+    #my_apps
     'core',
     'user',
     'record',
+    
 ]
 
 MIDDLEWARE = [
@@ -131,7 +137,8 @@ AUTH_USER_MODEL = 'user.User'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-            )
+            ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -168,3 +175,22 @@ CORS_ALLOW_HEADERS = (
 )
 
 APPEND_SLASH = False
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'CONTACT' : {'name': 'YB','phone':'123-123-123'},
+    'SERVE_INCLUDE_SCHEMA': False,
+
+    # OTHER SETTINGS
+		'SWAGGER_UI_SETTINGS': {
+        'dom_id': '#swagger-ui',  # required(default)
+        'layout': 'BaseLayout',  # required(default)
+        'deepLinking': True,
+        'persistAuthorization': True,  
+        'displayOperationId': True,
+        'filter': True,  # True 이면 Swagger UI에서 'Filter by Tag' 검색이 가능합니다
+    },
+}
